@@ -40,7 +40,6 @@ jobs:
     - name: Install dependencies
       run: npm i
 
-    - name: Install dependencies
-      run: |
-        gulp
-        npm run build
+    # Later: add in gulp
+    - name: Build application
+      run: npm run build
