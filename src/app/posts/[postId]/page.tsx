@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import getFormattedDate from "@/lib/getFormattedDate";
 import Link from "next/link";
 
-export function generateMetaData({ params }: { params: { postId: string } }) {
+export function generateMetadata({ params }: { params: { postId: string } }) {
   const posts = getSortedPostsData();
   const { postId } = params;
 
