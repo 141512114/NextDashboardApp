@@ -9,12 +9,14 @@ export default function PostListItem({ post }: Props) {
   const { id, title, date } = post;
   const formattedDate = getFormattedDate(date);
   return (
-    <li>
-      <Link className="link-light link-underline" href={`/posts/${id}`}>
-        {title}
-      </Link>
-      <br />
-      <p className="text-sm-start mt-1">{formattedDate}</p>
+    <li className="nbs-post-list-item">
+      <p>
+        <Link className="link-light link-underline" href={`/posts/${id}`}>
+          {title}
+        </Link>
+        <br />
+        <small className="text-sm-start mt-1">{formattedDate}</small>
+      </p>
     </li>
   );
 }

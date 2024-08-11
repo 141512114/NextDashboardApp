@@ -2,6 +2,7 @@ import { getPostData, getSortedPostsData } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import getFormattedDate from "@/lib/getFormattedDate";
 import Link from "next/link";
+import styles from "@/app/page.module.scss";
 
 export function generateMetadata({ params }: { params: { postId: string } }) {
   const posts = getSortedPostsData();
@@ -33,15 +34,19 @@ export default async function Post({ params }: { params: { postId: string } }) {
   const formattedDate = getFormattedDate(date);
 
   return (
-    <main className="px-5 mx-auto">
-      <h1 className="mt-4 mb-0">{title}</h1>
-      <p className="mt-0">{formattedDate}</p>
-      <article>
-        <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
-        <p>
+    <main className={`px-5 mx-auto ${styles.main} ${styles.postPage}`}>
+      <div className="container">
+        <div className="mb-5">
+          <h1 className="mt-4 mb-0">{title}</h1>
+          <p className={`${styles.postContentDate} mt-0`}>{formattedDate}</p>
+        </div>
+        <article>
+          <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        </article>
+        <div className="mt-4">
           <Link href="/">Back to home</Link>
-        </p>
-      </article>
+        </div>
+      </div>
     </main>
   );
 }
