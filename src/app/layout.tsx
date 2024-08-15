@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import "@mantine/core/styles.css";
+import "@mantine/tiptap/styles.css";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
@@ -16,9 +19,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <title>Nolan's cool blog posts</title>
+        <ColorSchemeScript />
+      </head>
       <body className={inter.className}>
-        {children}
-        <Footer />
+        <MantineProvider defaultColorScheme="dark">
+          {children}
+          <Footer />
+        </MantineProvider>
       </body>
     </html>
   );

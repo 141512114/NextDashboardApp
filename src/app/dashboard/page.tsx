@@ -1,18 +1,18 @@
-import styles from "./page.module.scss";
-import Posts from "@/app/components/Posts/Posts";
+import { VIEW_TYPE } from "@/lib/Enums";
 import Navbar from "@/app/components/Navbar";
+import styles from "@/app/page.module.scss";
+import Posts from "@/app/components/Posts/Posts";
 
-export default function Home() {
+export default function Dashboard() {
   return (
     <>
       <header>
         <div className="container">
           <div className="mt-5 mb-5">
             <p className="m-0 text-xl-center text-white">
-              Hello and welcome to React Dashboard!&nbsp;
-              <span className="text-nowrap">
-                I'm <span className="fw-bold">Nolan</span>
-              </span>
+              You are now viewing the dashboard!
+              <br />
+              Create, edit or delete posts as you like.
             </p>
           </div>
           <Navbar />
@@ -20,7 +20,7 @@ export default function Home() {
       </header>
       <main className={styles.main}>
         <div className="container">
-          <Posts />
+          <Posts view_as={VIEW_TYPE.ADMIN} />
         </div>
       </main>
     </>

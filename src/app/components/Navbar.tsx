@@ -11,7 +11,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li className="d-inline-block">
-            <Link href="/" className="text-white">
+            <Link href="/dashboard" className="text-white">
               Admin access
             </Link>
           </li>
