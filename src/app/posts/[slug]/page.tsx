@@ -1,14 +1,15 @@
-import { getPostData, getSortedPostsData } from "@/lib/posts";
+import getSortedPostsData from "@/lib/Posts/getSortedPostsData";
+import getPostData from "@/lib/Posts/getPostData";
 import { notFound } from "next/navigation";
 import getFormattedDate from "@/lib/getFormattedDate";
 import Link from "next/link";
 import styles from "@/app/page.module.scss";
 
-export function generateMetadata({ params }: { params: { postId: string } }) {
-  const posts = getSortedPostsData();
-  const { postId } = params;
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const posts = await getSortedPostsData();
 
-  const post = posts.find((post) => post.id === postId);
+  const post = posts.find((post: BlogPost) => post.id === slug);
 
   if (!post) {
     return {
@@ -21,15 +22,15 @@ export function generateMetadata({ params }: { params: { postId: string } }) {
   };
 }
 
-export default async function Post({ params }: { params: { postId: string } }) {
-  const posts = getSortedPostsData();
-  const { postId } = params;
+export default async function Post({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const posts = await getSortedPostsData();
 
-  if (!posts.find((p) => p.id === postId)) {
+  if (!posts.find((post: BlogPost) => post.id === slug)) {
     return notFound();
   }
 
-  const { title, date, contentHtml } = await getPostData(postId);
+  const { title, date, contentHtml } = await getPostData(slug);
 
   const formattedDate = getFormattedDate(date);
 

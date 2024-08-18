@@ -21,7 +21,7 @@ export default function PostEditor({ title, content }: Props) {
   const saveToFile = () => {
     const updatedContent = getUpdatedContent();
     if (!updatedContent) {
-      console.log("No content updated yet.");
+      console.log("No content update yet.");
       return;
     }
     console.log(updatedContent);
