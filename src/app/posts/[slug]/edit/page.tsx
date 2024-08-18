@@ -46,7 +46,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
           </h1>
           <p className={`${styles.postContentDate} mt-0`}>{formattedDate}</p>
         </div>
-        <PostEditor title={title} content={contentHtml}></PostEditor>
+        <PostEditor slug={slug} title={title} date={date} content={contentHtml}></PostEditor>
         <div className="mt-4">
           <Link href="/dashboard">Back to dashboard</Link>
         </div>

@@ -7,11 +7,12 @@ import html from "remark-html";
 
 const postsDirectory = path.join(process.cwd(), "src", "blogposts");
 
-export async function GET(
+export async function POST(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
   try {
+    const data: BlogPost = await request.json();
     const slug = params.slug;
 
     const fullPath = path.join(postsDirectory, `${slug}.md`);
@@ -20,24 +21,20 @@ export async function GET(
     // Parse the post metadata section
     const matterResult = matter(fileContents);
 
-    const processedContent = await remark()
-      .use(html)
-      .process(matterResult.content);
+    const parsedContent = remark().use(html).parse(data.contentHtml);
 
-    const contentHtml = processedContent.toString();
-
-    const blogPostWithHTML: BlogPost = {
-      id: slug,
+    const updatedFileContents = matter.stringify(String(parsedContent), {
       title: matterResult.data.title,
       date: matterResult.data.date,
-      contentHtml,
-    };
+    });
 
-    return NextResponse.json({ data: blogPostWithHTML }, { status: 200 });
+    fs.writeFileSync(fullPath, updatedFileContents);
+
+    return NextResponse.json({ status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { error: "Failed to get post by id" },
+      { error: "Failed to update file" },
       { status: 500 }
     );
   }

@@ -4,27 +4,41 @@ import styles from "@/app/page.module.scss";
 import RTE, { getUpdatedContent } from "@/app/components/RTE";
 import { Button, CloseButton, Input } from "@mantine/core";
 import { useState } from "react";
+import updatePostData from "@/lib/Posts/updatePostData";
 
 type Props = {
+  slug: string;
   title: string;
+  date: string;
   content: string;
 };
 
-export default function PostEditor({ title, content }: Props) {
+export default function PostEditor({ slug, title, date, content }: Props) {
   const [value, setValue] = useState(title);
 
-  const updateTitle = (e: any) => {
+  const updateTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     console.log(e.target.value);
   };
 
-  const saveToFile = () => {
+  const saveToFile = async () => {
     const updatedContent = getUpdatedContent();
     if (!updatedContent) {
       console.log("No content update yet.");
       return;
     }
-    console.log(updatedContent);
+
+    try {
+      await updatePostData(slug, {
+        id: slug,
+        title: title,
+        date: date,
+        contentHtml: updatedContent,
+      });
+      console.log("Post updated successfully");
+    } catch (error) {
+      console.error("Error updating post:", error);
+    }
   };
 
   return (
