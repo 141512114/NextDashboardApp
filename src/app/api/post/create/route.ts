@@ -4,24 +4,29 @@ import fs from "node:fs";
 import matter from "gray-matter";
 import { NodeHtmlMarkdown } from "node-html-markdown";
 
-const postsDirectory = path.join(process.cwd(), "src", "blogposts");
-
 export async function POST(request: Request) {
+  const postsDirectory = path.join(process.cwd(), "src", "blogposts");
+
   try {
     const data: BlogPost = await request.json();
 
     const fullPath = path.join(postsDirectory, `${data.id}.md`);
     // Convert HTML content to the appropriate markdown
-    const parsedContent = NodeHtmlMarkdown.translate(data.contentHtml);
+    let post_content = "";
+    if (data.contentHtml) {
+      const parsedContent = NodeHtmlMarkdown.translate(data.contentHtml);
+      post_content = parsedContent;
+    }
+
     // Build the new markdown file
-    const updatedFileContents = matter.stringify(String(parsedContent), {
+    const createFileContents = matter.stringify(String(post_content), {
       title: data.title,
       date: data.date,
     });
 
-    fs.writeFileSync(fullPath, updatedFileContents);
+    fs.writeFileSync(fullPath, createFileContents);
 
-    return NextResponse.json({ status: 200 });
+    return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

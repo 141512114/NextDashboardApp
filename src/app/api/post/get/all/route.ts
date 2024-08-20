@@ -3,9 +3,9 @@ import * as fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 
-const postsDirectory = path.join(process.cwd(), "src", "blogposts");
-
 export async function GET(request: Request) {
+  const postsDirectory = path.join(process.cwd(), "src", "blogposts");
+
   try {
     // Get file names under /posts
     const fileNames = fs.readdirSync(postsDirectory);
@@ -20,7 +20,7 @@ export async function GET(request: Request) {
       // Parse the post metadata section
       const matterResult = matter(fileContents);
 
-      const blogPost: BlogPostThumb = {
+      const blogPost: BlogPost = {
         id: slug,
         title: matterResult.data.title,
         date: matterResult.data.date,

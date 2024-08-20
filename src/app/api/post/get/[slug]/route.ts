@@ -5,12 +5,12 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
-const postsDirectory = path.join(process.cwd(), "src", "blogposts");
-
 export async function GET(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
+  const postsDirectory = path.join(process.cwd(), "src", "blogposts");
+
   try {
     const slug = params.slug;
 

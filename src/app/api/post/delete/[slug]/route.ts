@@ -2,12 +2,12 @@ import { NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
 
-const postsDirectory = path.join(process.cwd(), "src", "blogposts");
-
 export async function POST(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
+  const postsDirectory = path.join(process.cwd(), "src", "blogposts");
+
   try {
     const slug = params.slug;
 
