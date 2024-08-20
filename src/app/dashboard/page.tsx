@@ -1,7 +1,8 @@
 import { VIEW_TYPE } from "@/lib/Enums";
-import Navbar from "@/app/components/Navbar";
 import styles from "@/app/page.module.scss";
+import Navbar from "@/app/components/Navbar";
 import Posts from "@/app/components/Posts/Posts";
+import AdminToolBar from "@/app/components/Posts/AdminToolBar";
 
 export default function Dashboard() {
   return (
@@ -20,6 +21,7 @@ export default function Dashboard() {
       </header>
       <main className={styles.main}>
         <div className="container">
+          <AdminToolBar></AdminToolBar>
           <Posts view_as={VIEW_TYPE.ADMIN} />
         </div>
       </main>

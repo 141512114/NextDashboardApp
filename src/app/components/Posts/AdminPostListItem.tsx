@@ -1,4 +1,8 @@
+"use client";
+
 import getFormattedDate from "@/lib/getFormattedDate";
+import deletePost from "@/lib/Posts/deletePost";
+import { Button } from "@mantine/core";
 import Link from "next/link";
 
 type Props = {
@@ -10,6 +14,15 @@ export default function AdminPostListItem({ post }: Props) {
   const formattedDate = getFormattedDate(date);
 
   const editPostLink = `/posts/${id}/edit`;
+
+  const removePost = async () => {
+    try {
+      await deletePost(id);
+      console.log("Deleted post successfully");
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  }
 
   return (
     <li className="nbs-post-list-item">
@@ -26,9 +39,7 @@ export default function AdminPostListItem({ post }: Props) {
         <Link className="btn btn-info me-3" href={editPostLink}>
           Edit
         </Link>
-        <button className="btn btn-danger" type="button">
-          Remove
-        </button>
+        <Button className="btn btn-danger" type="button" onClick={() => removePost()}>Remove</Button>
       </div>
     </li>
   );

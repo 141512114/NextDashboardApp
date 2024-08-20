@@ -19,13 +19,13 @@ export async function GET(
 
     // Parse the post metadata section
     const matterResult = matter(fileContents);
-
+    // Convert the markdown content to appropriate HTML
     const processedContent = await remark()
       .use(html)
       .process(matterResult.content);
 
     const contentHtml = processedContent.toString();
-
+    // Build the blog post and return it
     const blogPostWithHTML: BlogPost = {
       id: slug,
       title: matterResult.data.title,

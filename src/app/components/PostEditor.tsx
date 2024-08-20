@@ -65,7 +65,13 @@ export default function PostEditor({ slug, title, date, content }: Props) {
         <RTE content={content}></RTE>
       </div>
       <div className={styles.postEditorActions + " mt-4"}>
-        <Button onClick={() => saveToFile()}>Save to file</Button>
+        <Button
+          className="btn btn-success"
+          type="button"
+          onClick={() => saveToFile()}
+        >
+          Save to file
+        </Button>
       </div>
     </div>
   );

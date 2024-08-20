@@ -13,20 +13,24 @@ export default async function Posts({ view_as = VIEW_TYPE.VISITOR }: Props) {
   return view_as === VIEW_TYPE.ADMIN ? (
     <section className="nbs-post-list-container">
       <h2>Your Blog (Admin access)</h2>
-      <ul className="nbs-post-list list-unstyled">
-        {posts.map((post: BlogPost) => (
-          <AdminPostListItem key={post.id} post={post} />
-        ))}
-      </ul>
+      {posts && (
+        <ul className="nbs-post-list list-unstyled">
+          {posts.map((post: BlogPost) => (
+            <AdminPostListItem key={post.id} post={post} />
+          ))}
+        </ul>
+      )}
     </section>
   ) : (
     <section className="nbs-post-list-container">
       <h2>Blog</h2>
-      <ul className="nbs-post-list list-unstyled">
-        {posts.map((post: BlogPost) => (
-          <PostListItem key={post.id} post={post} />
-        ))}
-      </ul>
+      {posts && (
+        <ul className="nbs-post-list list-unstyled">
+          {posts.map((post: BlogPost) => (
+            <PostListItem key={post.id} post={post} />
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
