@@ -4,6 +4,7 @@ import fs from "node:fs";
 import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
+import { NodeHtmlMarkdown } from "node-html-markdown";
 
 const postsDirectory = path.join(process.cwd(), "src", "blogposts");
 
@@ -21,7 +22,7 @@ export async function POST(
     // Parse the post metadata section
     const matterResult = matter(fileContents);
 
-    const parsedContent = remark().use(html).parse(data.contentHtml);
+    const parsedContent = NodeHtmlMarkdown.translate(data.contentHtml);
 
     const updatedFileContents = matter.stringify(String(parsedContent), {
       title: matterResult.data.title,

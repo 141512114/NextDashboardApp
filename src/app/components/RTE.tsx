@@ -35,7 +35,6 @@ export default function RTE({ content }: Props) {
     content,
     onUpdate({ editor }) {
       updated_content = editor.getHTML();
-      console.log(updated_content);
     },
   });
 
