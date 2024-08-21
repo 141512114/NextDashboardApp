@@ -59,12 +59,14 @@ export default function PostEditor({ slug, title, date, content }: Props) {
     }
 
     try {
-      await updatePostData(slug, {
+      const update: BlogPost = {
         id: new_post_slug,
         title: new_post_title,
         date: date,
         contentHtml: updatedContent,
-      });
+      };
+
+      await updatePostData(slug, update);
       console.log("Post updated successfully");
     } catch (error) {
       console.error("Error updating post:", error);
@@ -76,11 +78,19 @@ export default function PostEditor({ slug, title, date, content }: Props) {
 
   return (
     <div className={styles.postEditorWrapper}>
-      <div>
+      <form
+        className="form"
+        method="post"
+        onSubmit={async (event: any) => {
+          event?.preventDefault();
+          await saveToFile();
+        }}
+      >
         <Fieldset legend="Post metadata">
           <TextInput
             label="Edit the blog post id"
             value={newSlug}
+            name="blog_post_id"
             placeholder="Type a new id ..."
             onChange={updateSlug}
             mt="md"
@@ -96,10 +106,12 @@ export default function PostEditor({ slug, title, date, content }: Props) {
               </Tooltip>
             )}
             error={errorSlug ? "The specified id is invalid." : ""}
+            required
           />
           <TextInput
             label="Edit the blog post title"
             value={newTitle}
+            name="blog_post_title"
             placeholder="Type a new title ..."
             onChange={updateTitle}
             rightSectionPointerEvents="all"
@@ -111,21 +123,18 @@ export default function PostEditor({ slug, title, date, content }: Props) {
                 style={{ display: newTitle ? undefined : "none" }}
               />
             }
+            required
           />
         </Fieldset>
-      </div>
-      <div className="mt-3">
-        <RTE content={content}></RTE>
-      </div>
-      <div className={styles.postEditorActions + " mt-4"}>
-        <Button
-          className="btn btn-success"
-          type="button"
-          onClick={() => saveToFile()}
-        >
-          Save to file
-        </Button>
-      </div>
+        <div className="mt-3">
+          <RTE content={content}></RTE>
+        </div>
+        <div className={styles.postEditorActions + " mt-4"}>
+          <Button className="btn btn-success" type="submit">
+            Save to file
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }

@@ -1,12 +1,12 @@
+"use server";
+
+import axios from "axios";
+
 const getPostData = async (slug: string) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_URL}/api/post/get/${slug}`,
-      {
-        method: "GET",
-      }
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_URL}/api/post/get/${slug}`
     );
-    const data = await res.json();
     return data.data;
   } catch (error) {
     console.error(error);

@@ -2,16 +2,21 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import axios from "axios";
 
 const createPost = async (post: BlogPost) => {
   let postResponse: BlogPost;
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/post/create`, {
+    const { data } = await axios({
       method: "POST",
-      body: JSON.stringify(post),
+      url: `${process.env.NEXT_PUBLIC_URL}/api/post/create`,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      data: post,
     });
-    const data = await res.json();
     postResponse = data.data;
   } catch (error) {
     console.error(error);

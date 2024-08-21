@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { NodeHtmlMarkdown } from "node-html-markdown";
 
 export async function POST(
-  request: Request,
+  request: any,
   { params }: { params: { slug: string } }
 ) {
   const postsDirectory = path.join(process.cwd(), "src", "blogposts");

@@ -32,6 +32,7 @@ export default function RTE({ content }: Props) {
       Highlight,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
     ],
+    immediatelyRender: false,
     content,
     onUpdate({ editor }) {
       updated_content = editor.getHTML();

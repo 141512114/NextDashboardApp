@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { setDefaultResultOrder } from "dns";
 import "@mantine/core/styles.css";
 import "@mantine/tiptap/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
@@ -6,6 +7,8 @@ import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import Footer from "@/app/components/Footer";
+
+setDefaultResultOrder("ipv4first");
 
 const inter = Inter({ subsets: ["latin"] });
 

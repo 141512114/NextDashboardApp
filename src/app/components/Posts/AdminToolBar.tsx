@@ -6,11 +6,13 @@ import { Button } from "@mantine/core";
 export default function AdminToolBar() {
   const createNewPost = async () => {
     try {
-      await createPost({
+      const newPost: BlogPost = {
         id: "test-post",
         title: "Test-Post",
         date: "2024-08-22",
-      });
+      };
+
+      await createPost(newPost);
     } catch (error) {
       console.error("Error creating post:", error);
       return false;
