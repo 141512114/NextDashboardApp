@@ -61,7 +61,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
             date={date}
             content={contentHtml}
           ></PostEditor>
-          <Divider my="xl" />
+          <Divider my="xl" color="#181919" />
           <div className="post-page-footer">
             <Link href="/dashboard">Back to dashboard</Link>
           </div>

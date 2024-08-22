@@ -52,7 +52,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
           <article>
             <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
           </article>
-          <Divider my="xl" />
+          <Divider my="xl" color="#181919" />
           <div className="post-page-footer">
             <Link href="/">Back to home</Link>
           </div>
