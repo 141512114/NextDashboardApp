@@ -5,8 +5,13 @@ import getFormattedDate from "@/lib/getFormattedDate";
 import Link from "next/link";
 import styles from "@/app/page.module.scss";
 import PostEditor from "@/app/components/PostEditor";
+import { Divider } from "@mantine/core";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
   const posts = await getSortedPostsData();
 
@@ -31,24 +36,35 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const { title, date, contentHtml } = await getPostData(slug);
+  const { title, author, date, contentHtml } = await getPostData(slug);
 
   const formattedDate = getFormattedDate(date);
 
   return (
     <main className={`px-5 mx-auto ${styles.main} ${styles.postPage}`}>
-      <div className="container">
-        <div className="mb-5">
-          <h1 className="mt-4 mb-0">
+      <div className="container py-5">
+        <div className="post-page-header mb-5">
+          <h1 className="mt-4 mb-0 display-3">
             <small className="text-info">Edit mode activated</small>
             <br />
             {title}
           </h1>
-          <p className={`${styles.postContentDate} mt-0`}>{formattedDate}</p>
+          <p className={`${styles.postContentDate} mt-0 small`}>
+            {formattedDate} {author && `| Published by ${author}`}
+          </p>
         </div>
-        <PostEditor slug={slug} title={title} date={date} content={contentHtml}></PostEditor>
-        <div className="mt-4">
-          <Link href="/dashboard">Back to dashboard</Link>
+        <div className="post-page-body">
+          <PostEditor
+            slug={slug}
+            title={title}
+            author={author}
+            date={date}
+            content={contentHtml}
+          ></PostEditor>
+          <Divider my="xl" />
+          <div className="post-page-footer">
+            <Link href="/dashboard">Back to dashboard</Link>
+          </div>
         </div>
       </div>
     </main>

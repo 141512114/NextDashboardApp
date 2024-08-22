@@ -5,72 +5,31 @@
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --color-cream: #f0fffc;
+  --color-cream-extralight: #f8fffe;
+  --color-cream-extralight-rgb: 248, 255, 254;
+  --color-cream-light: #f3fffd;
+  --color-cream-light-rgb: 243, 255, 253;
+  --color-cream-medium: #d8e6e3;
+  --color-cream-medium-rgb: 216, 230, 227;
+  --color-cream-rare: #c0ccca;
+  --color-cream-rare-rgb: 192, 204, 202;
+  --color-cream-dark: #606665;
+  --color-cream-dark-rgb: 96, 102, 101;
+  --color-cream-midnight: #181919;
+  --color-cream-midnight-rgb: 24, 25, 25;
 
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
+  --foreground-rgb: var(--color-cream-midnight-rgb);
+  --background-start-rgb: var(--color-cream-medium-rgb);
+  --background-end-rgb: var(--color-cream-light-rgb);
 
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
+  --font-size-h1: 3.815rem;
+  --font-size-h2: 3.052rem;
+  --font-size-h3: 2.441rem;
+  --font-size-h4: 1.953rem;
+  --font-size-h5: 1.563rem;
+  --font-size-h6: 1.25rem;
+  --font-size-p: 1rem;
 }
 
 * {
@@ -95,13 +54,50 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+h1,
+.h1 {
+  font-size: var(--font-size-h1);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+h2,
+.h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3,
+.h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4,
+.h4 {
+  font-size: var(--font-size-h4);
+}
+
+h5,
+.h5 {
+  font-size: var(--font-size-h5);
+}
+
+h6,
+.h6 {
+  font-size: var(--font-size-h6);
+}
+
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-weight: 400;
+}
+
+p {
+  font-size: var(--font-size-p);
+}
+
+a {
+  font-size: inherit;
+  color: rgb(var(--foreground-rgb));
 }

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Button } from "@mantine/core";
 
 export default function Navbar() {
   return (
@@ -6,14 +6,19 @@ export default function Navbar() {
       <div className="mx-auto">
         <ul className="list-unstyled mb-0">
           <li className="d-inline-block me-3">
-            <Link href="/" className="text-white">
+            <Button component="a" variant="light" color="#181919" href="/">
               Home
-            </Link>
+            </Button>
           </li>
           <li className="d-inline-block">
-            <Link href="/dashboard" className="text-white">
-              Admin access
-            </Link>
+            <Button
+              component="a"
+              variant="light"
+              color="#181919"
+              href="/dashboard"
+            >
+              Dashboard
+            </Button>
           </li>
         </ul>
       </div>

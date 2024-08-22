@@ -4,8 +4,13 @@ import { notFound } from "next/navigation";
 import getFormattedDate from "@/lib/getFormattedDate";
 import Link from "next/link";
 import styles from "@/app/page.module.scss";
+import { Divider } from "@mantine/core";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = params;
   const posts = await getSortedPostsData();
 
@@ -30,22 +35,27 @@ export default async function Post({ params }: { params: { slug: string } }) {
     return notFound();
   }
 
-  const { title, date, contentHtml } = await getPostData(slug);
+  const { title, author, date, contentHtml } = await getPostData(slug);
 
   const formattedDate = getFormattedDate(date);
 
   return (
     <main className={`px-5 mx-auto ${styles.main} ${styles.postPage}`}>
-      <div className="container">
-        <div className="mb-5">
-          <h1 className="mt-4 mb-0">{title}</h1>
-          <p className={`${styles.postContentDate} mt-0`}>{formattedDate}</p>
+      <div className="container py-5">
+        <div className="post-page-header mb-5">
+          <h1 className="mt-4 mb-0 display-3">{title}</h1>
+          <p className={`${styles.postContentDate} mt-0 small`}>
+            {formattedDate} {author && `| Published by ${author}`}
+          </p>
         </div>
-        <article>
-          <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
-        </article>
-        <div className="mt-4">
-          <Link href="/">Back to home</Link>
+        <div className="post-page-body">
+          <article>
+            <section dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          </article>
+          <Divider my="xl" />
+          <div className="post-page-footer">
+            <Link href="/">Back to home</Link>
+          </div>
         </div>
       </div>
     </main>

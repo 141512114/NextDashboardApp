@@ -1,33 +1,29 @@
 "use client";
 
-import createPost from "@/lib/Posts/createPost";
-import { Button } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { Button, Center, Modal } from "@mantine/core";
+import CreateNewBlogPost from "@/app/components/Modals/CreateNewBlogPost";
 
 export default function AdminToolBar() {
-  const createNewPost = async () => {
-    try {
-      const newPost: BlogPost = {
-        id: "test-post",
-        title: "Test-Post",
-        date: "2024-08-22",
-      };
-
-      await createPost(newPost);
-    } catch (error) {
-      console.error("Error creating post:", error);
-      return false;
-    }
-  };
+  const [opened, { toggle, close }] = useDisclosure(false);
 
   return (
-    <div className="toolbar mb-4">
-      <Button
-        className="btn btn-success"
-        type="button"
-        onClick={() => createNewPost()}
+    <div className="toolbar my-4">
+      <Center>
+        <Button color="green" type="button" onClick={toggle}>
+          Create new post
+        </Button>
+      </Center>
+      <Modal
+        opened={opened}
+        withCloseButton
+        onClose={close}
+        size="lg"
+        radius="md"
+        title="Create a new blog post"
       >
-        Create new post
-      </Button>
+        <CreateNewBlogPost></CreateNewBlogPost>
+      </Modal>
     </div>
   );
 }

@@ -23,6 +23,7 @@ export async function GET(request: Request) {
       const blogPost: BlogPost = {
         id: slug,
         title: matterResult.data.title,
+        author: matterResult.data.author,
         date: matterResult.data.date,
       };
 

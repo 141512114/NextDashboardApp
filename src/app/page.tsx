@@ -7,19 +7,21 @@ export default function Home() {
     <>
       <header>
         <div className="container">
-          <div className="mt-5 mb-5">
-            <p className="m-0 text-xl-center text-white">
-              Hello and welcome to React Dashboard!&nbsp;
-              <span className="text-nowrap">
-                I'm <span className="fw-bold">Nolan</span>
-              </span>
+          <div className="d-flex flex-column my-5">
+            <p className="text-center display-6">
+              Hello and welcome to the Next.js dashboard app!
+            </p>
+            <p className="lead w-50 mx-auto mb-0 text-center">
+              NextDashboardApp was a project meant to learn more about
+              frameworks and challenge myself into learning the framework
+              Next.js.
             </p>
           </div>
           <Navbar />
         </div>
       </header>
       <main className={styles.main}>
-        <div className="container">
+        <div className="container py-5">
           <Posts />
         </div>
       </main>

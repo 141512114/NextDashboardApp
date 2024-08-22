@@ -1,0 +1,44 @@
+.postList {
+    .postItem {
+        margin-bottom: .85rem;
+        border-radius: 22px;
+        box-shadow: 0 0 87px rgba(var(--color-cream-rare-rgb, 116, 111, 85), 0.2865) inset, 0 0 152px rgba(var(--color-cream-dark-rgb, 78, 73, 50), 0.123) inset;
+        transition: box-shadow 300ms ease-in-out;
+
+        .postInner {
+            padding: 2rem;
+        }
+
+        &.postItemAdmin .postInner {
+            .postItemActions {
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            @media only screen and (min-width: 990px) {
+                padding-right: 16rem;
+
+                .postItemActions {
+                    position: absolute;
+                    top: 50%;
+                    right: 2rem;
+                    transform: translateY(-50%);
+                    float: end;
+                    width: auto;
+                    margin-top: 0;
+                    z-index: 9;
+                }
+            }
+
+        }
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 0 87px rgba(var(--color-cream-rare-rgb, 116, 111, 85), 0.422) inset, 0 0 152px rgba(var(--color-cream-dark-rgb, 78, 73, 50), 0.321) inset;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

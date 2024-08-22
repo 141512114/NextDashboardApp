@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { NodeHtmlMarkdown } from "node-html-markdown";
 
 export async function POST(
-  request: any,
+  request: Request,
   { params }: { params: { slug: string } }
 ) {
   const postsDirectory = path.join(process.cwd(), "src", "blogposts");
@@ -31,9 +31,16 @@ export async function POST(
     if (data.title && data.title !== "") {
       new_post_title = data.title;
     }
+
+    let new_post_author = matterResult.data.author;
+    // If a new author is proposed --> update the value of new_post_author and set the new author
+    if (data.author && data.author !== "") {
+      new_post_author = data.author;
+    }
     // Build the new markdown file
     const updatedFileContents = matter.stringify(String(new_post_content), {
       title: new_post_title,
+      author: new_post_author,
       date: matterResult.data.date, // won't be updated, so just pass the original date
     });
     // Update the existing file with the new content

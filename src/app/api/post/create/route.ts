@@ -21,6 +21,7 @@ export async function POST(request: Request) {
     // Build the new markdown file
     const createFileContents = matter.stringify(String(post_content), {
       title: data.title,
+      author: data.author,
       date: data.date,
     });
 

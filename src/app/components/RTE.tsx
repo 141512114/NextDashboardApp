@@ -10,7 +10,7 @@ import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
 
 type Props = {
-  content: string;
+  content?: string;
 };
 
 let updated_content: string;

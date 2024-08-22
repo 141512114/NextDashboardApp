@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "@/app/page.module.scss";
 import RTE, { getUpdatedContent } from "@/app/components/RTE";
 import {
   Button,
@@ -16,16 +15,24 @@ import updatePostData from "@/lib/Posts/updatePostData";
 type Props = {
   slug: string;
   title: string;
+  author: string;
   date: string;
-  content: string;
+  content?: string;
 };
 
-export default function PostEditor({ slug, title, date, content }: Props) {
+export default function PostEditor({
+  slug,
+  title,
+  author,
+  date,
+  content,
+}: Props) {
   const router = useRouter();
 
   const [newSlug, setNewSlug] = useState(slug);
   const [errorSlug, setErrorSlug] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
+  const [newAuthor, setNewAuthor] = useState(author);
 
   const [focused, setFocused] = useState(false);
 
@@ -35,6 +42,10 @@ export default function PostEditor({ slug, title, date, content }: Props) {
 
   const updateTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.target.value);
+  };
+
+  const updateAuther = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewAuthor(e.target.value);
   };
 
   const saveToFile = async () => {
@@ -58,10 +69,16 @@ export default function PostEditor({ slug, title, date, content }: Props) {
       new_post_title = newTitle;
     }
 
+    let new_post_author = author;
+    if (newAuthor && newAuthor !== "") {
+      new_post_author = newAuthor;
+    }
+
     try {
       const update: BlogPost = {
         id: new_post_slug,
         title: new_post_title,
+        author: new_post_author,
         date: date,
         contentHtml: updatedContent,
       };
@@ -77,7 +94,7 @@ export default function PostEditor({ slug, title, date, content }: Props) {
   };
 
   return (
-    <div className={styles.postEditorWrapper}>
+    <div className="post-page-editor-wrapper">
       <form
         className="form"
         method="post"
@@ -125,12 +142,21 @@ export default function PostEditor({ slug, title, date, content }: Props) {
             }
             required
           />
+          <TextInput
+            label="Edit the blog post author"
+            value={newAuthor}
+            name="blog_post_title"
+            placeholder="Type the new authors name ..."
+            onChange={updateAuther}
+            rightSectionPointerEvents="all"
+            mt="md"
+          />
         </Fieldset>
         <div className="mt-3">
           <RTE content={content}></RTE>
         </div>
-        <div className={styles.postEditorActions + " mt-4"}>
-          <Button className="btn btn-success" type="submit">
+        <div className="post-page-editor-actions mt-4">
+          <Button color="teal" type="submit">
             Save to file
           </Button>
         </div>
