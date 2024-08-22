@@ -2,12 +2,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Design choices
 
-I wanted to achieve a rather modern looking app which is why i pursued a rather minimal design approach.
+I wanted to achieve a rather modern looking app which is why i pursued a rather minimal design approach.\
 Blog posts are little cards and their corresponding pages display the content and metadata in a rather primitive way, which in turn makes the posts
-easier to read because of the lack of distractions (which aren't always ads).
+easier to read because of the lack of distractions (which aren't always ads).\
 I used the UI Library _Mantine_ and almost all of their components styles were left untouched.
-Bootstrap is also hanging around, but just to make my life easier.
-The in-app API might be a little bit overkill for this project, but, as soon as i heared about it, i had to implement it.
+Bootstrap is also hanging around, but just to make my life easier.\
+The in-app API might be a little bit overkill for this project, but, as soon as i heared about it, i had to implement it.\
+Blog posts are saved as *.md files. I could have used some sort of database which would work locally, but i thought a file-based system was also very interesting.
+This decision has the benefit of being very easy to understand and read, rather than having to understanding a database and its inner workings.
 
 ## Challenges
 
