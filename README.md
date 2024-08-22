@@ -11,8 +11,8 @@ The in-app API might be a little bit overkill for this project, but as soon as i
 ## Challenges
 
 Implementing the UI Library _Mantine_ wasn't as straight-forward as i hoped. The same problem occured as i was implementing the in-app API.
-Most of the issues were caused by directives such as ```bash "use client";``` and ```bash "use server";```.
-A few CORS related issues did show up too, also caused by these previous directives and maybe the use of ```bash fetch()```.
+Most of the issues were caused by directives such as ```"use client";``` and ```"use server";```.
+A few CORS related issues did show up too, also caused by these previous directives and maybe the use of ```fetch()```.
 But the biggest enemy i faced was: time. I did manage to create a finished product, but there were many features thrown overboard.
 
 ## Getting Started
