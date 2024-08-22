@@ -6,7 +6,8 @@ I wanted to achieve a rather modern looking app which is why i pursued a rather 
 Blog posts are little cards and their corresponding pages display the content and metadata in a rather primitive way, which in turn makes the posts
 easier to read because of the lack of distractions (which aren't always ads).
 I used the UI Library _Mantine_ and almost all of their components styles were left untouched.
-The in-app API might be a little bit overkill for this project, but as soon as i heared about it i had to implement it.
+Bootstrap is also hanging around, but just to make my life easier.
+The in-app API might be a little bit overkill for this project, but, as soon as i heared about it, i had to implement it.
 
 ## Challenges
 
@@ -16,6 +17,8 @@ A few CORS related issues did show up too, also caused by these previous directi
 But the biggest enemy i faced was: time. I did manage to create a finished product, but there were many features thrown overboard.
 
 ## Getting Started
+
+The Dashboard does not require an account, it is freely accessible.
 
 First, install all packages this project is dependent on:
 
