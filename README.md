@@ -2,21 +2,21 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Design choices
 
-I wanted to achieve a rather modern looking app which is why i pursued a rather minimal design approach.\
+I wanted to achieve a modern looking app which is why I pursued a minimal design approach.\
 Blog posts are little cards and their corresponding pages display the content and metadata in a rather primitive way, which in turn makes the posts
-easier to read because of the lack of distractions (which aren't always ads).\
+easier to read with the lack of distractions (which aren't always ads but can also be bad design choices).\
 I used the UI Library _Mantine_ and almost all of their components styles were left untouched.
 Bootstrap is also hanging around, but just to make my life easier.\
-The in-app API might be a little bit overkill for this project, but, as soon as i heared about it, i had to implement it.\
-Blog posts are saved as *.md files. I could have used some sort of database which would work locally, but i thought a file-based system was also very interesting.
+The in-app API might be a little bit overkill for this project but, as soon as I heared about it, I had to implement it.\
+Blog posts are saved as *.md files. I could have used some sort of database which would work locally, but I thought a file-based system was also very interesting.
 This decision has the benefit of being very easy to understand and read, rather than having to understanding a database and its inner workings.
 
 ## Challenges
 
-Implementing the UI Library _Mantine_ wasn't as straight-forward as i hoped. The same problem occured as i was implementing the in-app API.\
+Implementing the UI Library _Mantine_ wasn't as straight-forward as I hoped. The same problem occured while implementing the in-app API.\
 Most of the issues were caused by directives such as ```"use client";``` and ```"use server";```.\
 A few CORS related issues did show up too, also caused by these previous directives and maybe the use of ```fetch()```.\
-But the biggest enemy i faced was: time. I did manage to create a finished product, but there were many features thrown overboard.
+But the biggest enemy I faced was: time. I did manage to create a finished product but there were many planned features which had to be thrown overboard.
 
 ## Getting Started
 
